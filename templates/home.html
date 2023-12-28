@@ -1,3 +1,14 @@
-<h1>
-    Hello World!!
-</h1>
+<body>
+    <center>
+    <h1><b>Customer Type Prediction</b></h1>
+    
+    <form action="{{ url_for('predict')}}"method="post">
+          When did you visited last time:<input type="text" name="Last" placeholder="Last" required="required" /><br><br>
+          How Frequently do you come:<input type="text" name="Freq" placeholder="Freq" required="required" /><br><br>
+          How much money you spent:<input type="text" name="Spending" placeholder="Spending" required="required" /><br><br>
+          <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+{{prediction_text}}
+    </center>
+</body>

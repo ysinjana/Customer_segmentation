@@ -33,6 +33,27 @@ def predict_api():
     return jsonify(output[0])
     '''
     return jsonify(op)
+@app.route('/predict',methods=['POST'])
+
+def predict():
+   
+    data1=[int(x) for x in request.form.values()]
+    new_data=[]
+    new_data[0:2]=stored_function([data1[0]],[data1[1]],[data1[2]])
+    y2= [val for sublist in new_data for val in sublist]
+    print(y2)
+    
+    output=model.predict([y2])[0]
+    if output==0:
+        oname="Power Shoppers"
+    elif output==1:
+        oname="Loyal Customers"
+    elif output==2:
+        oname="At-risk Customers"
+    else:
+        oname="Recent Customers"
+    print(oname)
+    return render_template("home.html",prediction_text="Type of Customer is : {}".format(oname))
 
 if __name__=="__main__":
     app.run(debug=True)
